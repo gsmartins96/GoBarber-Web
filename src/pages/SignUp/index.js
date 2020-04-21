@@ -31,7 +31,7 @@ export default function SignUp() {
 
         <button type="submit">Criar Conta</button>
 
-        <Link to="/register">Já tenho conta</Link>
+        <Link to="/">Já tenho conta</Link>
       </Form>
     </>
   );
