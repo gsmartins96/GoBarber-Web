@@ -43,8 +43,12 @@ export default function Dashboard() {
         };
       });
 
+      console.tron.log('data', data);
+      console.tron.log('appointment', schedule.appointment);
       setSchedule(data);
     }
+
+    loadSchedule();
   }, [date]);
 
   const dateFormatted = useMemo(
@@ -73,22 +77,14 @@ export default function Dashboard() {
       </header>
 
       <ul>
-        <Time past>
-          <strong>08:00</strong>
-          <span>Gabriel Martins</span>
-        </Time>
-        <Time available>
-          <strong>09:00</strong>
-          <span>Em aberto</span>
-        </Time>
-        <Time>
-          <strong>10:00</strong>
-          <span>Gabriel Martins</span>
-        </Time>
-        <Time>
-          <strong>11:00</strong>
-          <span>Gabriel Martins</span>
-        </Time>
+        {schedule.map((time) => (
+          <Time key={time.time} past={time.past} available={!time.appointment}>
+            <strong>{time.time}</strong>
+            <span>
+              {time.appointment ? time.appointment.user.nome : 'Em aberto'}
+            </span>
+          </Time>
+        ))}
       </ul>
     </Container>
   );
